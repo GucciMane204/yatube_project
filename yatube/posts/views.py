@@ -4,10 +4,20 @@ from django.http import HttpResponse
 
 def index(request):
     template = 'posts/index.html'
-    return render(request, template)
+    context = {
+        'title': 'Это главная страница проекта Yatube',
+        'text': 'Текст',
+    }
+    return render(request, template, context)
+
+def group(request):
+    return HttpResponse(f'Страница группы')
 
 
 def group_posts(request, slug):
-    return HttpResponse(
-        'group_posts() — для страницы,'
-        'на которой будут посты, отфильтрованные по группам.')
+    template = 'posts/group_list.html'
+    title = 'Здесь будет информация о группах проекта Yatube'
+    context = {
+        'title': title,
+    }
+    return render(request, template, context)
